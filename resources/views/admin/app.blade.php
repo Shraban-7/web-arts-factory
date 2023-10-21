@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="@yield('meta_keywords','some default keywords')">
     <meta name="description" content="@yield('meta_description','default description')">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <link rel="canonical" href="{{url()->current()}}" />
     <title>Web Arts Factory | @yield('title')</title>

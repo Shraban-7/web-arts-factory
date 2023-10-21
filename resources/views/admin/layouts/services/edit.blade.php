@@ -1,7 +1,9 @@
-<form id="createForm" action="" method="post" enctype="multipart/form-data">
+<form id="editForm" action="{{ route('service.update',$service) }}" method="POST" enctype="multipart/form-data">
+
     @csrf
-    @method('put')
+    {{-- @method('PUT') --}}
     <div class="row">
+        {{-- <input type="hidden" name="service_id" value="{{ $service->id }}"> --}}
         <div class="col-md-6">
             <div class="form-group">
                 <label for="service_name">Service Title</label>
@@ -30,15 +32,11 @@
     <div class="row">
 
         <div class="col-md-6">
-            {{-- @if ($service->service_logo)
-                <img src="{{ asset('uploads/images/service/'.$service->service_logo) }}" alt="">
-            @else
-                <p>service not upload</p>
-            @endif --}}
+
             <div class="form-group">
                 <label for="imageUpload">Choose an image</label>
                 <input type="file" class="form-control-file" id="imageUpload" name="service_logo" accept="image/*">
-                <img id="display_image" class="mt-3" width="auto" height="250px" src="" alt="">
+                <img id="display_image" class="mt-3" width="auto" height="250px" src="{{ asset('uploads/images/service/'.$service->service_logo) }}" alt="">
             </div>
             <!-- Add other fields in the left column of the second row -->
         </div>

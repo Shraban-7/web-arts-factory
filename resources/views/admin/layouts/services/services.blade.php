@@ -22,8 +22,8 @@
 
                     </div>
                     <div class="col-md-4">
-                        <a title="Create" href="{{ route('service.create') }}" id="Modal__show"
-                            class="float-end btn btn-primary ">Create
+                        <a title="Create" href="{{ route('service.create') }}" formActionUrl="{{ route('service.store') }}"
+                            id="Modal__show" class="float-end btn btn-primary ">Create
                             Student</a>
                     </div>
                 </div><!-- /.row -->
@@ -81,8 +81,11 @@
                                                 <td>{{ $service->status }}</td>
                                                 <td>
                                                     <a href="#">details</a>
-                                                    <a href="{{ route('service.edit',$service->id) }}" id="Modal__show">update</a>
-                                                    <a href="#">delete</a>
+                                                    <a href="{{ route('service.edit', $service->id) }}"
+                                                        service-id="{{ $service->id }}" id="Modal__show">update</a>
+                                                    <a type="button" class="delete-item"
+                                                        action-url="{{ route('service.delete', $service->id) }}">Delete
+                                                        Item</a>
                                                 </td>
                                             </tr>
                                         @empty
@@ -141,34 +144,17 @@
                 });
             }
 
-            // function previewImage(input) {
-            //     var preview = document.getElementById('imagePreview');
-            //     var file = input.files[0];
-            //     var reader = new FileReader();
 
-            //     reader.onload = function(e) {
-            //         preview.src = e.target.result;
-            //         preview.style.display = 'block';
-            //     };
-
-            //     if (file) {
-            //         reader.readAsDataURL(file);
-            //     }
-            // }
-
-            // // Add an event listener to the file input to trigger the preview
-            // var imageUpload = document.getElementById('imageUpload');
-            // imageUpload.addEventListener('change', function() {
-            //     previewImage(this);
-            // });
 
             // modal part
 
             let dialog = ''
+            let formUrl = ''
             $(document).on('click', '#Modal__show', function(e) {
                 e.preventDefault();
                 let ModalUrl = $(this).attr('href');
                 const modalTitle = $(this).attr('title');
+                const fromUrl = $(this).attr('formUrl');
                 alert(ModalUrl);
                 console.log(ModalUrl);
 
@@ -192,6 +178,9 @@
 
             });
 
+
+            // from store
+
             $(document).on('submit', '#createForm', function(e) {
                 e.preventDefault();
                 let formData = new FormData($('#createForm')[0])
@@ -205,6 +194,59 @@
                         console.log(response);
                         $('.table__content').load(location.href + ' .table__content');
                         dialog.modal('hide');
+                    }
+                });
+            });
+
+
+            // form update
+
+            $(document).on('submit', '#editForm', function(e) {
+                e.preventDefault();
+                let formData = new FormData($('#editForm')[0])
+                // let service_id = $(this).attr('service-id'); // Get the action attribute of the form
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('service.update', ['service'=>$service]) }}", // Use the form's action URL
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log(response);
+                        $('.table__content').load(location.href + ' .table__content');
+                        dialog.modal('hide');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log('Error occurred:');
+                        console.log(textStatus, errorThrown);
+                        // Handle error as needed, e.g., display an error message to the user
+                        alert('Error occurred during the request. Please try again.');
+                    }
+                });
+            });
+
+
+
+            // Delete
+
+            $('a.delete-item').click(function(e) {
+                e.preventDefault(); // Prevent the default link behavior
+                var actionUrl = $(this).attr('action-url');
+                var clickedRow = $(this).closest('tr'); // Capture the reference to the table row
+
+                $.ajax({
+                    type: 'GET',
+                    url: actionUrl,
+                    success: function(data) {
+                        // Handle success, e.g., remove the deleted item from the DOM
+                        clickedRow.remove(); // Remove the table row
+                    },
+                    error: function(data) {
+                        // Handle errors, e.g., show an error message
+                        console.error(data);
                     }
                 });
             });

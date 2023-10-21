@@ -120,30 +120,27 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
 
-
+        // return request()->all();
         $imageName = '';
-        $deleteOldImage = "public/services/images/{$service->service_logo}";
+        $deleteOldImage = "uploads/images/service/{$service->service_logo}";
         if ($image = $request->file('service_logo')) {
             if (file_exists($deleteOldImage)) {
                 File::delete($deleteOldImage);
             }
 
-            $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/services/images/', $imageName);
+            $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move('uploads/images/service/', $imageName);
         } else {
             $imageName = $service->service_logo;
         }
 
 
         $service->update([
-            'service_name'=>$request->service_name,
-            'service_slug'=>Str::slug($request->service_name),
             'service_logo'=>$imageName,
             'service_desc'=>$request->service_desc,
             'service_process'=>$request->service_process,
             'service_benefits'=>$request->service_benefits,
             'service_duration'=>$request->service_duration,
-            'status'=>$request->status
         ]);
 
         if ($request->has('technologies')) {
@@ -152,6 +149,8 @@ class ServiceController extends Controller
             // If technologies are not provided, you may want to detach any existing relationships.
             $service->technologies()->detach();
         }
+
+        return redirect()->back();
     }
 
     /**
