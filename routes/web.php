@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\BrandPartnerController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
@@ -37,9 +39,19 @@ Route::post('/service/project/store',[ProjectController::class,'store'])->name('
 
 // category
 
-Route::get('/post/category/create',[PostCategoryController::class,'create'])->name('post.category.create');
-Route::post('/post/category/store',[PostCategoryController::class,'store'])->name('post.category.store');
+Route::get('/blog/post/category/create',[PostCategoryController::class,'create'])->name('post.category.create');
+Route::post('/blog/post/category/store',[PostCategoryController::class,'store'])->name('post.category.store');
 
+
+// blog
+
+Route::get('/blog/post/create',[BlogPostController::class,'create'])->name('blog.post.create');
+Route::post('/blog/post/store',[BlogPostController::class,'store'])->name('blog.post.store');
+
+// brand partner
+
+Route::get('/brand/create',[BrandPartnerController::class,'create'])->name('brand.create');
+Route::post('/brand/store',[BrandPartnerController::class,'store'])->name('brand.store');
 
 Route::get('/login', function () {
     return view('login');

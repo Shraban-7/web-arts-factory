@@ -54,36 +54,24 @@
                                                         </div>
                                                     @endif
                                                     <form role="form" method="POST"
-                                                        action="{{ route('post.category.store') }}"
+                                                        action="{{ route('brand.store') }}"
                                                         enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="box-body">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
-                                                                    <label for="feature_title">Category Name</label>
+                                                                    <label for="feature_title">Brand Name</label>
                                                                     <input type="text" id="feature_title"
-                                                                        name="category_name" class="form-control">
+                                                                        name="brand_name" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="feature_title">Meta Title</label>
-                                                                    <input type="text" id="feature_title"
-                                                                        name="category_meta_title" class="form-control">
+                                                                    <label for="imageUpload">Choose an image</label>
+                                                                    <input type="file" class="form-control-file" id="imageUpload" name="brand_logo" accept="image/*">
+                                                                    <img id="display_image" class="mt-3" width="auto" height="250px" src="" alt="">
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label for="feature_title">Meta Tag</label>
-                                                                    <input type="text" id="feature_title"
-                                                                        name="category_meta_tag" class="form-control">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="feature_title">Meta Description</label>
-                                                                    <input type="text" id="feature_title"
-                                                                        name="category_meta_desc" class="form-control">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="exampleFormControlTextarea1">Project
-                                                                        Description</label>
-                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="project_desc" rows="3"></textarea>
-                                                                </div>
+
+
+
                                                                 <button type="submit"
                                                                     class="btn btn-primary">Submit</button>
 

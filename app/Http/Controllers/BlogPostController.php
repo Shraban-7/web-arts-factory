@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
+use App\Models\PostCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -23,7 +24,8 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-        //
+        $categories= PostCategory::all();
+        return view('admin.layouts.blog.create',compact('categories'));
     }
 
     /**
@@ -31,6 +33,8 @@ class BlogPostController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return $request->all();
         $request->validate([
             'post_title'=>'required'
         ]);
@@ -47,13 +51,16 @@ class BlogPostController extends Controller
             'post_slug'=>Str::slug($request->post_title),
             'post_banner'=>$imageName,
             'post_desc'=>$request->post_desc,
+            'meta_title'=>$request->meta_title,
+            'meta_tag'=>$request->meta_tag,
+            'meta_desc'=>$request->meta_desc,
             'post_category_id'=>$request->post_category_id,
-            'post_status'=>$request->post_status
+            // 'post_status'=>$request->post_status
         ]);
 
-        if ($request->has('tags')) {
-            $post->tags()->attach($request->tags);
-        }
+        // if ($request->has('tags')) {
+        //     $post->tags()->attach($request->tags);
+        // }
 
         return response()->json(['success' => true], 201);
 
@@ -99,7 +106,7 @@ class BlogPostController extends Controller
             'post_banner'=>$imageName,
             'post_desc'=>$request->post_desc,
             'post_category_id'=>$request->post_category_id,
-            'post_status'=>$request->post_status
+            // 'post_status'=>$request->post_status
         ]);
 
         if ($request->has('tags')) {

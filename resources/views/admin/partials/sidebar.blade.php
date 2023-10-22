@@ -136,11 +136,17 @@
                                 <p>Post Categories</p>
                             </a>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a href="{{ route('blog.post.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Posts</p>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('brand.create') }}" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Brands

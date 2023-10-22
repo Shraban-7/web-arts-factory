@@ -21,7 +21,7 @@ class BrandPartnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.layouts.brands.create');
     }
 
     /**
@@ -33,7 +33,7 @@ class BrandPartnerController extends Controller
         if ($request->hasFile('brand_logo')) {
             $image = $request->file('brand_logo');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/brand/images/', $imageName);
+            $image->storeAs('uploads/images/brand', $imageName);
         }
 
         BrandPartner::create([
