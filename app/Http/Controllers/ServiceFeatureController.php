@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use App\Models\ServiceFeature;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class ServiceFeatureController extends Controller
      */
     public function create()
     {
-        //
+        $services=Service::all();
+        return view('admin.layouts.service_feature.create',compact('services'));
     }
 
     /**
@@ -29,6 +31,8 @@ class ServiceFeatureController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return $request->all();
         $request->validate([
             'feature_title'=>'required',
             'feature_desc'=>'required',

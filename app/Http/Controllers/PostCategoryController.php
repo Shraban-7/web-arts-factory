@@ -21,7 +21,7 @@ class PostCategoryController extends Controller
      */
     public function create()
     {
-
+        return view('admin.layouts.category.create');
     }
 
     /**
@@ -36,7 +36,9 @@ class PostCategoryController extends Controller
         $category = new PostCategory([
             'category_name' => $request->input('category_name'),
             'category_slug' => Str::slug($request->input('category_name')),
-            'category_desc' => $request->input('category_desc'),
+            'category_meta_title' => $request->input('category_meta_title'),
+            'category_meta_tag' => $request->input('category_meta_tag'),
+            'category_meta_desc' => $request->input('category_meta_desc'),
         ]);
 
         $category->save();

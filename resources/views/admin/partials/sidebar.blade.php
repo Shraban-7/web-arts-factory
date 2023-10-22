@@ -101,15 +101,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('service.feature.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Package List</p>
+                                <p>Service Feature List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('service.project.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Attribute List</p>
+                                <p>Service Project List</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -118,6 +118,25 @@
                                 <p>Portfolio List</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-laptop"></i>
+                        <p>
+                            Posts
+                            <i class="fas fa-angle-left right"></i>
+
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('post.category.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Post Categories</p>
+                            </a>
+                        </li>
+                        
                     </ul>
                 </li>
                 <li class="nav-item">

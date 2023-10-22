@@ -14,5 +14,10 @@ class PostCategory extends Model
      *
      * @var array
      */
-    protected $fillable = ['category_name','category_slug','category_desc'];
+   /**
+    * The attributes that aren't mass assignable.
+    *
+    * @var array
+    */
+   protected $guarded = [];
 }

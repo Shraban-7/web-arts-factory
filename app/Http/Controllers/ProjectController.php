@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -22,7 +23,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $services=Service::all();
+        return view('admin.layouts.projects.create',compact('services'));
     }
 
     /**
@@ -30,11 +32,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return $request->all();
+
         $request->validate([
             'project_title'=>'required',
             'project_desc'=>'required',
             'project_service_id'=>'required'
         ]);
+
+        $imageName='';
 
         if ($request->hasFile('project_banner')) {
             $image = $request->file('project_banner');
@@ -49,6 +56,8 @@ class ProjectController extends Controller
             'project_url'=>$request->project_url,
             'project_service_id'=>$request->project_service_id
         ]);
+
+        return response()->json(['success' => true], 201);
     }
 
     /**
