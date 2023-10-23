@@ -12,10 +12,17 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function project_list_api()
     {
         $projects = Project::all();
         return json_encode($projects);
+    }
+
+    public function index()
+    {
+        $projects = Project::with('service')->get();
+        // return $projects;
+        return view('admin.layouts.projects.list',compact('projects'));
     }
 
     /**
@@ -46,7 +53,7 @@ class ProjectController extends Controller
         if ($request->hasFile('project_banner')) {
             $image = $request->file('project_banner');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/projects/images/', $imageName);
+            $image->move('uploads/images/projects/', $imageName);
         }
 
         Project::create([
@@ -57,7 +64,7 @@ class ProjectController extends Controller
             'project_service_id'=>$request->project_service_id
         ]);
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('service.project.list')->with('success','project create successfully');
     }
 
     /**
@@ -73,7 +80,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $services=Service::all();
+        return view('admin.layouts.projects.edit',compact('project','services'));
     }
 
     /**
@@ -82,14 +90,14 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $imageName = '';
-        $deleteOldImage = "public/projects/images/{$project->project_banner}";
+        $deleteOldImage = "uploads/images/projects/{$project->project_banner}";
         if ($image = $request->file('project_banner')) {
             if (file_exists($deleteOldImage)) {
                 File::delete($deleteOldImage);
             }
 
             $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/projects/images/', $imageName);
+            $image->move('uploads/images/projects/', $imageName);
         } else {
             $imageName = $project->project_banner;
         }
@@ -101,6 +109,8 @@ class ProjectController extends Controller
             'project_url'=>$request->project_url,
             'project_service_id'=>$request->project_service_id
         ]);
+
+        return redirect()->route('service.project.list')->with('success','project update successfully');
     }
 
     /**

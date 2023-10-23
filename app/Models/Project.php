@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Project extends Model
 {
@@ -15,4 +16,9 @@ class Project extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class,'project_service_id');
+    }
 }

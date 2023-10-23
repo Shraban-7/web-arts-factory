@@ -32,13 +32,17 @@ Route::get('/service/feature/create',[ServiceFeatureController::class,'create'])
 Route::post('/service/feature/store',[ServiceFeatureController::class,'store'])->name('service.feature.store');
 Route::get('/service/feature/edit/{serviceFeature}',[ServiceFeatureController::class,'edit'])->name('service.feature.edit');
 Route::post('/service/feature/update/{serviceFeature}',[ServiceFeatureController::class,'update'])->name('service.feature.update');
-Route::get('/service/feature/update/{serviceFeature}',[ServiceFeatureController::class,'destroy'])->name('service.feature.delete');
+Route::get('/service/feature/delete/{serviceFeature}',[ServiceFeatureController::class,'destroy'])->name('service.feature.delete');
 
 
 // projects
 
+Route::get('/service/project/list',[ProjectController::class,'index'])->name('service.project.list');
 Route::get('/service/project/create',[ProjectController::class,'create'])->name('service.project.create');
 Route::post('/service/project/store',[ProjectController::class,'store'])->name('service.project.store');
+Route::get('/service/project/edit/{project}',[ProjectController::class,'edit'])->name('service.project.edit');
+Route::post('/service/project/update/{project}',[ProjectController::class,'update'])->name('service.project.update');
+Route::get('/service/project/delete/{project}',[ProjectController::class,'destroy'])->name('service.project.delete');
 
 
 // category

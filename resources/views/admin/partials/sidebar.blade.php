@@ -107,7 +107,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('service.project.create') }}" class="nav-link">
+                            <a href="{{ route('service.project.list') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Service Project List</p>
                             </a>

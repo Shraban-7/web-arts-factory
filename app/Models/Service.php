@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Project;
 use App\Models\Technology;
 use App\Models\ServiceFeature;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,11 @@ class Service extends Model
     public function features()
     {
         return $this->hasMany(ServiceFeature::class);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
     }
 
     public function technologies()
