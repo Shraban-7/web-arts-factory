@@ -13,8 +13,8 @@ class ServiceFeatureController extends Controller
      */
     public function index()
     {
-        $serviceFeatures = ServiceFeature::all();
-        return json_encode($serviceFeatures);
+        $serviceFeatures = ServiceFeature::with('service')->get();
+        return view('admin.layouts.service_feature.list',compact('serviceFeatures'));
     }
 
     /**
@@ -46,7 +46,7 @@ class ServiceFeatureController extends Controller
                 'service_id'=>$request->service_id,
             ]
         );
-        return response()->json(['success' => true], 201);
+        return redirect()->route('service.feature.list')->with('success','service feature create successfully');
     }
 
     /**
@@ -62,7 +62,8 @@ class ServiceFeatureController extends Controller
      */
     public function edit(ServiceFeature $serviceFeature)
     {
-        return json_encode($serviceFeature);
+        $services=Service::all();
+        return view('admin.layouts.service_feature.edit',compact('serviceFeature','services'));
     }
 
     /**
@@ -71,6 +72,8 @@ class ServiceFeatureController extends Controller
     public function update(Request $request, ServiceFeature $serviceFeature)
     {
         $serviceFeature->update($request->all());
+
+        return redirect()->route('service.feature.list')->with('success','service feature update successfully');
     }
 
     /**

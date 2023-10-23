@@ -17,7 +17,7 @@ class ServiceFeature extends Model
      */
     protected $guarded = [];
 
-    public function services()
+    public function service()
     {
         return $this->belongsTo(Service::class);
     }
