@@ -146,7 +146,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('brand.create') }}" class="nav-link">
+                    <a href="{{ route('brand.list') }}" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Brands

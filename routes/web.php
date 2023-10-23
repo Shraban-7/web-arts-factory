@@ -58,8 +58,12 @@ Route::post('/blog/post/store',[BlogPostController::class,'store'])->name('blog.
 
 // brand partner
 
+Route::get('/brand/list',[BrandPartnerController::class,'index'])->name('brand.list');
 Route::get('/brand/create',[BrandPartnerController::class,'create'])->name('brand.create');
 Route::post('/brand/store',[BrandPartnerController::class,'store'])->name('brand.store');
+Route::get('/brand/edit/{brand}',[BrandPartnerController::class,'edit'])->name('brand.edit');
+Route::post('/brand/update/{brand}',[BrandPartnerController::class,'update'])->name('brand.update');
+Route::get('/brand/delete/{brand}',[BrandPartnerController::class,'destroy'])->name('brand.delete');
 
 Route::get('/login', function () {
     return view('login');

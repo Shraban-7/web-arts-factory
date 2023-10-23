@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\BrandPartnerController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\FaqController;
 use Illuminate\Http\Request;
@@ -84,3 +85,8 @@ Route::get('/blogs', [BlogPostController::class, 'index'])->name('blogs');
 
 Route::get('/services',[ServiceController::class,'service_api_list']);
 Route::get('/service/{service}', [ServiceController::class, 'show'])->name('service.show');
+
+
+//brands
+
+Route::get('/brands',[BrandPartnerController::class,'brands_api']);
