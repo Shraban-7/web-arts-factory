@@ -82,5 +82,5 @@ Route::get('/blogs', [BlogPostController::class, 'index'])->name('blogs');
 // service
 
 
-
+Route::get('/services',[ServiceController::class,'service_api_list']);
 Route::get('/service/{service}', [ServiceController::class, 'show'])->name('service.show');

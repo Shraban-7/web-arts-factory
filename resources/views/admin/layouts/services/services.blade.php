@@ -129,106 +129,8 @@
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 
 
-
-    <!-- bootbox.js -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
-
-
-
     <script>
         $(function() {
-            function initializeSelect2InsideModal() {
-                $('.select2bs4').select2({
-                    theme: 'bootstrap4'
-                });
-            }
-
-
-
-            // modal part
-
-            let dialog = ''
-            let formUrl = ''
-            $(document).on('click', '#Modal__show', function(e) {
-                e.preventDefault();
-                let ModalUrl = $(this).attr('href');
-                const modalTitle = $(this).attr('title');
-                const fromUrl = $(this).attr('formUrl');
-                alert(ModalUrl);
-                console.log(ModalUrl);
-
-                $.ajax({
-                    type: "get",
-                    url: ModalUrl,
-                    success: function(response) {
-                        dialog = bootbox.dialog({
-                            title: 'Service ' + modalTitle,
-                            message: "<div class='modal__content'> </div>",
-                            size: 'large',
-
-                        });
-                        $('.modal__content').html(response);
-                        initializeSelect2InsideModal();
-
-
-                    }
-                });
-
-
-            });
-
-
-            // from store
-
-            $(document).on('submit', '#createForm', function(e) {
-                e.preventDefault();
-                let formData = new FormData($('#createForm')[0])
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('service.store') }}",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        console.log(response);
-                        $('.table__content').load(location.href + ' .table__content');
-                        dialog.modal('hide');
-                    }
-                });
-            });
-
-
-            // form update
-
-            $(document).on('submit', '#editForm', function(e) {
-                e.preventDefault();
-                let formData = new FormData($('#editForm')[0])
-                // let service_id = $(this).attr('service-id'); // Get the action attribute of the form
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('service.update', ['service'=>$service]) }}", // Use the form's action URL
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        console.log(response);
-                        $('.table__content').load(location.href + ' .table__content');
-                        dialog.modal('hide');
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.log('Error occurred:');
-                        console.log(textStatus, errorThrown);
-                        // Handle error as needed, e.g., display an error message to the user
-                        alert('Error occurred during the request. Please try again.');
-                    }
-                });
-            });
-
-
 
             // Delete
 
@@ -250,32 +152,7 @@
                     }
                 });
             });
-
-            //image preview
-
-            $(document).on("change", "#imageUpload", function(e) {
-                e.preventDefault();
-
-                const file = this.files[0];
-                if (file) {
-                    let reader = new FileReader();
-                    reader.onload = function(event) {
-                        $("#display_image").attr("src", event.target.result);
-                    };
-                    reader.readAsDataURL(file);
-
-                }
-            });
-
-
-            //Initialize Select2 Elements
-            // $('.select2bs4').select2({
-            //     theme: 'bootstrap4'
-            // })
         })
-
-
-
-        // Function to display image preview
     </script>
+
 @endsection

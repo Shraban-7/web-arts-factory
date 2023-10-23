@@ -93,7 +93,7 @@ class ServiceController extends Controller
             $service->technologies()->attach($request->technologies);
         }
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('services')->with('success','service store successfully');
 
     }
 
@@ -110,8 +110,9 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
+        $selectedTechnologyIds = $service->technologies->pluck('id')->toArray();
         $technologies = Technology::all();
-        return view('admin.layouts.services.edit',compact('technologies','service'));
+        return view('admin.layouts.services.edit',compact('technologies','service', 'selectedTechnologyIds'));
     }
 
     /**
@@ -150,7 +151,7 @@ class ServiceController extends Controller
             $service->technologies()->detach();
         }
 
-        return redirect()->back();
+        return redirect()->route('services')->with('success','service update successfully');
     }
 
     /**
