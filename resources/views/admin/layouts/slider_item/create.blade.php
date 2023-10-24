@@ -61,7 +61,7 @@
                                                         </div>
                                                     @endif
                                                     <form role="form" method="POST"
-                                                        action="{{ route('service.project.store') }}"
+                                                        action="{{ route('slider_item.store') }}"
                                                         enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="box-body">

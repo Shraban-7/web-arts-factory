@@ -22,9 +22,9 @@
 
                     </div>
                     <div class="col-md-4">
-                        <a title="Create" href="{{ route('service.project.create') }}"
+                        <a title="Create" href="{{ route('slider_item.create') }}"
                             id="Modal__show" class="float-end btn btn-primary ">Create
-                            Service Project</a>
+                            Carousel Item</a>
                     </div>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -60,37 +60,36 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>P Title</th>
+                                            <th>Item Name</th>
 
-                                            <th>P Banner</th>
+                                            <th>Item Photo</th>
 
-                                            <th>P Description</th>
-                                            <th>P Url</th>
+                                            <th>Item Description</th>
+
                                             <th>P Service Name</th>
-
 
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($projects as $key=>$project)
+                                        @forelse ($sliders as $key=>$slider)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ $project->project_title }}</td>
+                                                <td>{{ $slider->item_title }}</td>
 
                                                 <td><img class="img-fluid img-thumbnail"
-                                                    src="{{ asset('uploads/images/projects/'.$project->project_banner) }}"
-                                                    alt="{{ $project->project_title }}" srcset=""></td>
-                                                <td>{{ $project->project_desc }}</td>
-                                                <td>{{ $project->project_url }}</td>
-                                                <td>{{ $project->service->service_name }}</td>
+                                                    src="{{ asset('uploads/images/carousel/'.$slider->item_image) }}"
+                                                    alt="{{ $slider->item_title }}" srcset=""></td>
+                                                <td>{{ $slider->item_content }}</td>
+
+                                                <td></td>
 
                                                 <td>
                                                     <a href="#">details</a>
-                                                    <a href="{{ route('service.project.edit', $project->id) }}"
+                                                    <a href="{{ route('slider_item.edit', $slider->id) }}"
                                                          >update</a>
                                                     <a type="button" class="delete-item"
-                                                        action-url="{{ route('service.project.delete', $project->id) }}">Delete
+                                                        action-url="{{ route('slider_item.delete', $slider->id) }}">Delete
                                                         Item</a>
                                                 </td>
                                             </tr>

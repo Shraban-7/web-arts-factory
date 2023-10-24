@@ -12,10 +12,16 @@ class SliderItemController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function slider_item_api()
     {
         $sliders = SliderItem::all();
         return json_encode($sliders);
+    }
+
+    public function index()
+    {
+        $sliders = SliderItem::all();
+        return view('admin.layouts.slider_item.list',compact('sliders'));
     }
 
     /**
@@ -33,9 +39,10 @@ class SliderItemController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         $request->validate([
             'item_title'=>'required',
-            'item_bg_color'=>'required'
+
         ]);
 
         $imageName = '';
@@ -51,7 +58,7 @@ class SliderItemController extends Controller
             'item_image'=>$imageName,
             'carousel_id'=>$request->carousel_id
         ]);
-
+        return redirect()->route('slider_item.list')->with('success','slider item crete successfully');
     }
 
     /**
@@ -67,7 +74,7 @@ class SliderItemController extends Controller
      */
     public function edit(SliderItem $sliderItem)
     {
-        return json_encode($sliderItem);
+
     }
 
     /**
@@ -94,6 +101,7 @@ class SliderItemController extends Controller
             'item_image' => $imageName,
             'carousel_id' => $request->carousel_id
         ]);
+        return redirect()->route('slider_item.list')->with('success','slider item update successfully');
     }
 
     /**
