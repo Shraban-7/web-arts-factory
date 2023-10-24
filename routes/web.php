@@ -1,11 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\SliderItemController;
 use App\Http\Controllers\BrandPartnerController;
 use App\Http\Controllers\PostCategoryController;
-use App\Http\Controllers\ProjectController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceFeatureController;
 
 Route::get('/', function () {
@@ -64,6 +66,25 @@ Route::post('/brand/store',[BrandPartnerController::class,'store'])->name('brand
 Route::get('/brand/edit/{brand}',[BrandPartnerController::class,'edit'])->name('brand.edit');
 Route::post('/brand/update/{brand}',[BrandPartnerController::class,'update'])->name('brand.update');
 Route::get('/brand/delete/{brand}',[BrandPartnerController::class,'destroy'])->name('brand.delete');
+
+
+//slider
+
+Route::get('slider_item/list',[SliderItemController::class, 'index'])->name('slider_item.list');
+Route::get('slider_item/create',[SliderItemController::class, 'create'])->name('slider_item.create');
+Route::post('slider_item/store',[SliderItemController::class, 'store'])->name('slider_item.store');
+Route::get('slider_item/edit/{sliderItem}',[SliderItemController::class, 'edit'])->name('slider_item.edit');
+Route::post('slider_item/update/{sliderItem}',[SliderItemController::class, 'update'])->name('slider_item.update');
+Route::get('slider_item/delete/{sliderItem}',[SliderItemController::class, 'destroy'])->name('slider_item.delete');
+
+// Carousel
+
+Route::get('carousel/list',[CarouselController::class, 'index'])->name('carousel.list');
+Route::get('carousel/create',[CarouselController::class, 'create'])->name('carousel.create');
+Route::post('carousel/store',[CarouselController::class, 'store'])->name('carousel.store');
+Route::get('carousel/edit/{carousel}',[CarouselController::class, 'edit'])->name('carousel.edit');
+Route::post('carousel/update/{carousel}',[CarouselController::class, 'update'])->name('carousel.update');
+Route::get('carousel/delete/{carousel}',[CarouselController::class, 'destroy'])->name('carousel.delete');
 
 Route::get('/login', function () {
     return view('login');

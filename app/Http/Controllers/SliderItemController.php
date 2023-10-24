@@ -39,14 +39,13 @@ class SliderItemController extends Controller
         if ($request->hasFile('item_image')) {
             $image = $request->file('item_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/carousel/images/', $imageName);
+            $image->move('uploads/images/carousel/', $imageName);
         }
 
         SliderItem::create([
             'item_title'=>$request->item_title,
             'item_content'=>$request->item_content,
             'item_image'=>$imageName,
-            'item_bg_color'=>$request->item_bg_color,
             'carousel_id'=>$request->carousel_id
         ]);
 
@@ -74,14 +73,14 @@ class SliderItemController extends Controller
     public function update(Request $request, SliderItem $sliderItem)
     {
         $imageName = '';
-        $deleteOldImage = "public/carousel/images/{$sliderItem->item_image}";
+        $deleteOldImage = "uploads/images/carousel/{$sliderItem->item_image}";
         if ($image = $request->file('item_image')) {
             if (file_exists($deleteOldImage)) {
                 File::delete($deleteOldImage);
             }
 
             $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/carousel/images/', $imageName);
+            $image->move('uploads/images/carousel/', $imageName);
         } else {
             $imageName = $sliderItem->item_image;
         }
@@ -90,7 +89,6 @@ class SliderItemController extends Controller
             'item_title' => $request->item_title,
             'item_content' => $request->item_content,
             'item_image' => $imageName,
-            'item_bg_color' => $request->item_bg_color,
             'carousel_id' => $request->carousel_id
         ]);
     }

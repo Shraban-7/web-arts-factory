@@ -54,16 +54,16 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
-                            Pages & Content
+                           Carousel 
                             <i class="fas fa-angle-left right"></i>
 
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('carousel.list') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>About Us</p>
+                                <p>Carousel List</p>
                             </a>
                         </li>
                         <li class="nav-item">

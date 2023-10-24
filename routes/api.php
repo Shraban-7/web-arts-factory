@@ -60,16 +60,8 @@ Route::post('system/update/{system}',[SystemController::class, 'update'])->name(
 Route::get('system/delete/{system}',[SystemController::class, 'destroy'])->name('system.delete');
 
 
-// Carousel
 
-Route::post('carousel/store',[CarouselController::class, 'store'])->name('carousel.store');
-Route::get('carousel/edit/{carousel}',[CarouselController::class, 'edit'])->name('carousel.edit');
-Route::post('carousel/update/{carousel}',[CarouselController::class, 'update'])->name('carousel.update');
-Route::get('carousel/delete/{carousel}',[CarouselController::class, 'update'])->name('carousel.delete');
-Route::post('slider_item/store',[SliderItemController::class, 'store'])->name('slider_item.store');
-Route::get('slider_item/edit/{sliderItem}',[SliderItemController::class, 'edit'])->name('slider_item.edit');
-Route::post('slider_item/update/{sliderItem}',[SliderItemController::class, 'update'])->name('slider_item.update');
-Route::get('slider_item/delete/{sliderItem}',[SliderItemController::class, 'destroy'])->name('slider_item.delete');
+
 
 // Blog
 Route::post('blog/store',[BlogPostController::class, 'store'])->name('blog.post.store');

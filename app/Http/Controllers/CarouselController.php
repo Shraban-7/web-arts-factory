@@ -12,7 +12,8 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        //
+        $carousels= Carousel::all();
+        return view('admin.layouts.slider.list',compact('carousels'));
     }
 
     /**
@@ -20,7 +21,7 @@ class CarouselController extends Controller
      */
     public function create()
     {
-
+        return view('admin.layouts.slider.create');
     }
 
     /**
@@ -29,6 +30,8 @@ class CarouselController extends Controller
     public function store(Request $request)
     {
         Carousel::create($request->all());
+
+        return redirect()->route('carousel.list')->with('success','Carousel store successfully');
     }
 
     /**
@@ -44,7 +47,7 @@ class CarouselController extends Controller
      */
     public function edit(Carousel $carousel)
     {
-        return json_encode($carousel);
+        return view('admin.layouts.slider.edit',compact('carousel'));
     }
 
     /**
@@ -53,6 +56,7 @@ class CarouselController extends Controller
     public function update(Request $request, Carousel $carousel)
     {
         $carousel->update($request->all());
+        return redirect()->route('carousel.list')->with('success','Carousel update successfully');
     }
 
     /**
