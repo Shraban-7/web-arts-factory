@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carousel;
 use App\Models\SliderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -22,7 +23,9 @@ class SliderItemController extends Controller
      */
     public function create()
     {
-        //
+
+        $carousels= Carousel::all();
+        return view('admin.layouts.slider_item.create',compact('carousels'));
     }
 
     /**

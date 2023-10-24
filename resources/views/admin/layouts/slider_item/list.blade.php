@@ -16,7 +16,7 @@
                 <div class="row mb-2">
                     <!-- /.col -->
                     <div class="col-md-4">
-                        Service List
+                        Carousel Item List
                     </div>
                     <div class="col-md-4">
 
