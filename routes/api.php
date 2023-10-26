@@ -64,12 +64,9 @@ Route::get('system/delete/{system}',[SystemController::class, 'destroy'])->name(
 
 
 // Blog
-Route::post('blog/store',[BlogPostController::class, 'store'])->name('blog.post.store');
 Route::get('blog/show/{blogPost}',[BlogPostController::class, 'show'])->name('blog.show');
-Route::get('blog/edit/{blogPost}',[BlogPostController::class, 'edit'])->name('blog.edit');
-Route::post('blog/update/{blogPost}',[BlogPostController::class, 'update'])->name('blog.update');
-Route::get('blog/delete/{blogPost}',[BlogPostController::class, 'destroy'])->name('blog.delete');
-Route::get('/blogs', [BlogPostController::class, 'index'])->name('blogs');
+
+Route::get('/blogs', [BlogPostController::class, 'blog_api'])->name('blogs');
 
 
 // service

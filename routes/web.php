@@ -55,8 +55,12 @@ Route::post('/blog/post/category/store',[PostCategoryController::class,'store'])
 
 // blog
 
+Route::get('/blog/list',[BlogPostController::class,'index'])->name('blog.list');
 Route::get('/blog/post/create',[BlogPostController::class,'create'])->name('blog.post.create');
 Route::post('/blog/post/store',[BlogPostController::class,'store'])->name('blog.post.store');
+Route::get('blog/edit/{blogPost}',[BlogPostController::class, 'edit'])->name('blog.edit');
+Route::post('blog/update/{blogPost}',[BlogPostController::class, 'update'])->name('blog.update');
+Route::get('blog/delete/{blogPost}',[BlogPostController::class, 'destroy'])->name('blog.delete');
 
 // brand partner
 
@@ -85,6 +89,11 @@ Route::post('carousel/store',[CarouselController::class, 'store'])->name('carous
 Route::get('carousel/edit/{carousel}',[CarouselController::class, 'edit'])->name('carousel.edit');
 Route::post('carousel/update/{carousel}',[CarouselController::class, 'update'])->name('carousel.update');
 Route::get('carousel/delete/{carousel}',[CarouselController::class, 'destroy'])->name('carousel.delete');
+
+
+//blog
+
+
 
 Route::get('/login', function () {
     return view('login');

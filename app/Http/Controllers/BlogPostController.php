@@ -13,10 +13,16 @@ class BlogPostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function blog_api()
     {
         $posts = BlogPost::all();
         return json_encode($posts);
+    }
+
+    public function index()
+    {
+        $posts = BlogPost::all();
+        return view('admin.layouts.blog.list',compact('posts'));
     }
 
     /**
@@ -43,7 +49,7 @@ class BlogPostController extends Controller
         if ($request->hasFile('post_banner')) {
             $image = $request->file('post_banner');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/blog/images/', $imageName);
+            $image->move('uploads/images/blog/', $imageName);
         }
 
         $post = BlogPost::create([
@@ -62,7 +68,7 @@ class BlogPostController extends Controller
         //     $post->tags()->attach($request->tags);
         // }
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('blog.list')->with('success','blog create successfully');
 
     }
 
@@ -79,7 +85,8 @@ class BlogPostController extends Controller
      */
     public function edit(BlogPost $blogPost)
     {
-        return json_encode($blogPost);
+        $categories= PostCategory::all();
+        return view('admin.layouts.blog.edit',compact('blogPost','categories'));
     }
 
     /**
@@ -88,14 +95,14 @@ class BlogPostController extends Controller
     public function update(Request $request, BlogPost $blogPost)
     {
         $imageName = '';
-        $deleteOldImage = "public/blog/images/{$blogPost->post_banner}";
+        $deleteOldImage = "uploads/images/blog/{$blogPost->post_banner}";
         if ($image = $request->file('post_banner')) {
             if (file_exists($deleteOldImage)) {
                 File::delete($deleteOldImage);
             }
 
             $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/blog/images/', $imageName);
+            $image->move('uploads/images/blog/', $imageName);
         } else {
             $imageName = $blogPost->post_banner;
         }
@@ -109,9 +116,12 @@ class BlogPostController extends Controller
             // 'post_status'=>$request->post_status
         ]);
 
-        if ($request->has('tags')) {
-            $blogPost->tags()->attach($request->tags);
-        }
+        // if ($request->has('tags')) {
+        //     $blogPost->tags()->attach($request->tags);
+        // }
+
+        return redirect()->route('blog.list')->with('success','blog update successfully');
+
     }
 
     /**

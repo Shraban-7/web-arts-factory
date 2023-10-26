@@ -137,7 +137,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('blog.post.create') }}" class="nav-link">
+                            <a href="{{ route('blog.list') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Posts</p>
                             </a>
