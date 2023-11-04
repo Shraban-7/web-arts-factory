@@ -4,7 +4,7 @@
 @section('meta_description', 'DesignWavers')
 
 @section('styles')
-
+<link rel="stylesheet" href="{{ asset('richtexteditor/rte_theme_default.css') }}" />
 @endsection
 
 @section('content')
@@ -33,9 +33,9 @@
 
                             <div class="card">
                                 <div class="card-header d-flex">
-                                    <h3 class="box-title col-md-6">Create Service Feature</h3>
+                                    <h3 class="box-title col-md-6">Create Blog Post</h3>
                                     <div class="col-md-3"></div>
-
+                                    <div class="col-md-3"><a href="{{ route('blog.list') }}" class="btn btn-primary"><i class="fa-solid fa-left-long mx-2"></i>Back</a></div>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -72,11 +72,12 @@
                                                                 <div class="form-group">
                                                                     <label for="exampleFormControlTextarea1">Post
                                                                         Description</label>
-                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="post_desc" rows="3"></textarea>
+                                                                    <textarea class="form-control"  id="inp_editor1" name="post_desc" rows="3"></textarea>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Categories</label>
                                                                     <select name="post_category_id" class="form-control" id="service">
+                                                                        <option value="">Choose Category</option>
                                                                         @foreach ($categories as  $category)
                                                                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                                                         @endforeach
@@ -94,12 +95,12 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="feature_title">Meta Description</label>
-                                                                    <input type="text" id="feature_title"
-                                                                        name="meta_desc" class="form-control">
+                                                                    <textarea class="form-control"  id="inp_editor2" name="meta_desc" rows="3"></textarea>
                                                                 </div>
 
-                                                                <button type="submit"
-                                                                    class="btn btn-primary">Submit</button>
+                                                                <div class="button-container">
+                                                                    <button type="submit" class="btn btn-primary block" style="width: 100%;">Create Post</button>
+                                                                </div>
 
                                                             </div>
                                                         </div>
@@ -130,5 +131,61 @@
 @endsection
 
 @section('scripts')
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<!-- Select2 -->
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+<!-- rich text editor -->
+
+<script type="text/javascript" src="{{ asset("richtexteditor/rte.js") }}"></script>
+<script type="text/javascript" src="{{ asset('richtexteditor/plugins/all_plugins.js') }}"></script>
+
+
+
+<!-- bootbox.js -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+
+
+
+<script>
+    $(function() {
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        });
+
+        var editor1 = new RichTextEditor("#inp_editor1");
+        var editor1 = new RichTextEditor("#inp_editor2");
+
+        //image preview
+
+        $(document).on("change", "#imageUpload", function(e) {
+            e.preventDefault();
+
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $("#display_image").attr("src", event.target.result);
+                };
+                reader.readAsDataURL(file);
+
+            }
+        });
+
+
+        //Initialize Select2 Elements
+        // $('.select2bs4').select2({
+        //     theme: 'bootstrap4'
+        // })
+    })
+
+
+
+    // Function to display image preview
+</script>
 
 @endsection

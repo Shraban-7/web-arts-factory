@@ -16,7 +16,7 @@
                 <div class="row mb-2">
                     <!-- /.col -->
                     <div class="col-md-4">
-                        Service List
+                       
                     </div>
                     <div class="col-md-4">
 
@@ -39,24 +39,13 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Responsive Hover Table</h3>
+                                <h3 class="card-title">Service Feature Table</h3>
 
-                                <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" class="form-control float-right"
-                                            placeholder="Search">
 
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0">
-                                <table class="table table-hover text-nowrap">
+                            <div class="card-body table-responsive p-5">
+                                <table class="table table-hover text-nowrap" id="Table_ID">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -79,12 +68,12 @@
                                                 <td>{{ $serviceFeature?->service?->service_name }}</td>
 
                                                 <td>
-                                                    <a href="#">details</a>
-                                                    <a href="{{ route('service.feature.edit', $serviceFeature->id) }}"
-                                                         >update</a>
-                                                    <a type="button" class="delete-item"
-                                                        action-url="{{ route('service.feature.delete', $serviceFeature->id) }}">Delete
-                                                        Item</a>
+
+                                                    <a class="btn btn-primary" href="{{ route('service.feature.edit', $serviceFeature->id) }}"
+                                                         ><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a type="button" class="delete-item btn btn-danger"
+                                                        action-url="{{ route('service.feature.delete', $serviceFeature->id) }}"><i class="fa-solid fa-trash-can"></i>
+                                                        </a>
                                                 </td>
                                             </tr>
                                         @empty
@@ -127,9 +116,13 @@
     <!-- Select2 -->
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
 
     <script>
         $(function() {
+
+            $('#Table_ID').DataTable();
 
             // Delete
 

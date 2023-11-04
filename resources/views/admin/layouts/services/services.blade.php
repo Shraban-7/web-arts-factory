@@ -16,14 +16,14 @@
                 <div class="row mb-2">
                     <!-- /.col -->
                     <div class="col-md-4">
-                        Service List
+
                     </div>
                     <div class="col-md-4">
 
                     </div>
                     <div class="col-md-4">
                         <a title="Create" href="{{ route('service.create') }}" formActionUrl="{{ route('service.store') }}"
-                            id="Modal__show" class="float-end btn btn-primary ">Create
+                            id="Modal__show" class="float-end btn btn-primary ml-auto">Create
                             Student</a>
                     </div>
                 </div><!-- /.row -->
@@ -39,24 +39,12 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Responsive Hover Table</h3>
+                                <h3 class="card-title">Service List</h3>
 
-                                <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" class="form-control float-right"
-                                            placeholder="Search">
-
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0">
-                                <table class="table table-hover text-nowrap">
+                            <div class="card-body table-responsive p-5">
+                                <table class="table table-hover text-nowrap" id="Table_ID">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -73,19 +61,19 @@
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $service->service_name }}</td>
                                                 <td>
-                                                    <img class="img-fluid img-thumbnail"
+                                                    <img style="width: 225px; height:150px;" class="img-fluid img-thumbnail"
                                                         src="{{ asset('uploads/images/service/' . $service->service_logo) }}"
                                                         alt="{{ $service->service_name }}" srcset="">
                                                 </td>
                                                 <td>{{ $service->service_desc }}</td>
                                                 <td>{{ $service->status }}</td>
                                                 <td>
-                                                    <a href="#">details</a>
+                                                    <a href="#" class="btn btn-warning"><i class="fa-solid fa-eye"></i></a>
                                                     <a href="{{ route('service.edit', $service->id) }}"
-                                                        service-id="{{ $service->id }}" id="Modal__show">update</a>
-                                                    <a type="button" class="delete-item"
-                                                        action-url="{{ route('service.delete', $service->id) }}">Delete
-                                                        Item</a>
+                                                        service-id="{{ $service->id }}" class="btn btn-primary" id="Modal__show"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a type="button" class="delete-item btn btn-danger"
+                                                        action-url="{{ route('service.delete', $service->id) }}"><i class="fa-solid fa-trash-can"></i>
+                                                        </a>
                                                 </td>
                                             </tr>
                                         @empty
@@ -127,10 +115,12 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <!-- Select2 -->
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
-
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
     <script>
         $(function() {
+
+            $('#Table_ID').DataTable();
 
             // Delete
 

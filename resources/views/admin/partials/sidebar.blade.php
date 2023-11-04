@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link text-center">
 
-        <h4 class="brand-text font-weight-light"><i>Admin Pannel</i></h4>
+        <h4 class="brand-text font-weight-light"><i>WebArtsFactory</i></h4>
     </a>
 
     <!-- Sidebar -->
@@ -52,7 +52,7 @@
                 <li class="nav-header">Utils</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
+                        <i class="fa-solid fa-sliders"></i>
                         <p>
                            Carousel
                             <i class="fas fa-angle-left right"></i>
@@ -112,19 +112,14 @@
                                 <p>Service Project List</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Portfolio List</p>
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-laptop"></i>
+                        <i class="nav-icon fa-solid fa-blog"></i>
                         <p>
-                            Posts
+                            Blog
                             <i class="fas fa-angle-left right"></i>
 
                         </p>
@@ -139,7 +134,7 @@
                         <li class="nav-item">
                             <a href="{{ route('blog.list') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Posts</p>
+                                <p>Blog Posts</p>
                             </a>
                         </li>
 

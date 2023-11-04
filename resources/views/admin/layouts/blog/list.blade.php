@@ -16,7 +16,7 @@
                 <div class="row mb-2">
                     <!-- /.col -->
                     <div class="col-md-4">
-                        Service List
+                        
                     </div>
                     <div class="col-md-4">
 
@@ -24,7 +24,7 @@
                     <div class="col-md-4">
                         <a title="Create" href="{{ route('blog.post.create') }}" id="Modal__show"
                             class="float-end btn btn-primary ">Create
-                            Brand</a>
+                            Blog</a>
                     </div>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -39,24 +39,13 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Responsive Hover Table</h3>
+                                <h3 class="card-title">Blog Post Table</h3>
 
-                                <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" class="form-control float-right"
-                                            placeholder="Search">
 
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0">
-                                <table class="table table-hover text-nowrap">
+                            <div class="card-body table-responsive p-5">
+                                <table class="table table-hover text-nowrap" id="Table_ID">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -72,18 +61,32 @@
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $post->post_title }}</td>
 
-                                                <td><img class="img-fluid img-thumbnail"
+                                                <td><img style="width: 225px; height:150px;" class="img-fluid img-thumbnail"
                                                         src="{{ asset('uploads/images/blog/' . $post->post_banner) }}"
                                                         alt="{{ $post->post_title }}" srcset=""></td>
 
-                                                <td>{{ $post->post_desc }}</td>
+                                                <td>
+                                                    @php
+                                                        $content = stripslashes($post->post_desc);
+
+                                                        if (strlen($content) > 50) {
+                                                            $content = substr($content, 0, 40) . '...';
+                                                        }
+
+                                                        echo $content;
+                                                    @endphp
+
+
+                                                </td>
                                                 <td>
 
-                                                    <a href="#">details</a>
-                                                    <a href="{{ route('blog.edit', $post->id) }}">update</a>
-                                                    <a type="button" class="delete-item"
-                                                        action-url="{{ route('blog.delete', $post->id) }}">Delete
-                                                        Item</a>
+                                                    <a class="btn btn-warning" href="#"><i
+                                                            class="fa-solid fa-eye"></i></a>
+                                                    <a class="btn btn-primary" href="{{ route('blog.edit', $post->id) }}"><i
+                                                            class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a type="button" class="delete-item btn btn-danger"
+                                                        action-url="{{ route('blog.delete', $post->id) }}"><i
+                                                            class="fa-solid fa-trash-can"></i></a>
                                                 </td>
                                             </tr>
                                         @empty
@@ -125,10 +128,13 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <!-- Select2 -->
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 
     <script>
         $(function() {
+
+            $('#Table_ID').DataTable();
 
             // Delete
 
