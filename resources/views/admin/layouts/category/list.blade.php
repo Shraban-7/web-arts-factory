@@ -22,9 +22,9 @@
 
                     </div>
                     <div class="col-md-4">
-                        <a title="Create" href="{{ route('service.create') }}" formActionUrl="{{ route('service.store') }}"
-                            id="Modal__show" class="float-end btn btn-primary ml-auto">Create
-                            Service</a>
+                        <a title="Create" href="{{ route('post.category.create') }}"
+                            id="Modal__show" class="float-end btn btn-primary ">Category
+                            Create</a>
                     </div>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -39,7 +39,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Service List</h3>
+                                <h3 class="card-title">Category Table</h3>
+
 
                             </div>
                             <!-- /.card-header -->
@@ -48,35 +49,33 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>S Name</th>
-                                            <th>S Banner</th>
-                                            <th>S Description</th>
-                                            <th>S Status</th>
+                                            <th>Category Name</th>
+
+                                            <th>Meta title</th>
+
+                                            <th>Meta Keywords</th>
+
+                                            <th>Meta Description</th>
+
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($services as $key=>$service)
+                                        @forelse ($categories as $key=>$category)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ $service->service_name }}</td>
+                                                <td>{{ $category->category_name  }}</td>
+
+                                                <td>{{ $category->category_meta_title }}</td>
+                                                <td>{{ $category->category_meta_tag }}</td>
+                                                <td>{{ $category->category_meta_desc }}</td>
+
                                                 <td>
-                                                    <img style="width: 225px; height:150px;" class="img-fluid img-thumbnail"
-                                                        src="{{ asset('uploads/images/service/' . $service->service_logo) }}"
-                                                        alt="{{ $service->service_name }}" srcset="">
-                                                </td>
-                                                <td>{{ $service->service_desc }}</td>
-                                                <td>@if ($service->status===1)
-                                                    <span class="badge badge-success">Active</span>
-                                                    @else
-                                                    <span class="badge badge-danger">In Active</span>
-                                                @endif</td>
-                                                <td>
-                                                    <a href="{{ route('service.show',$service->id) }}" class="btn btn-warning"><i class="fa-solid fa-eye"></i></a>
-                                                    <a href="{{ route('service.edit', $service->id) }}"
-                                                        service-id="{{ $service->id }}" class="btn btn-primary" id="Modal__show"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                                                    <a class="btn btn-primary" href="{{ route('post.category.edit', $category->id) }}"
+                                                         ><i class="fa-solid fa-pen-to-square"></i></a>
                                                     <a type="button" class="delete-item btn btn-danger"
-                                                        action-url="{{ route('service.delete', $service->id) }}"><i class="fa-solid fa-trash-can"></i>
+                                                        action-url="{{ route('post.category.delete', $category->id) }}"><i class="fa-solid fa-trash-can"></i>
                                                         </a>
                                                 </td>
                                             </tr>
@@ -119,7 +118,9 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <!-- Select2 -->
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
 
     <script>
         $(function() {

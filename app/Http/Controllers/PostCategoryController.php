@@ -13,7 +13,8 @@ class PostCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories=PostCategory::all();
+        return view('admin.layouts.category.list',compact('categories'));
     }
 
     /**
@@ -57,24 +58,27 @@ class PostCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PostCategory $postCategory)
+    public function edit(PostCategory $category)
     {
-        return json_encode($postCategory);
+        // return $category;
+        return view('admin.layouts.category.edit',compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PostCategory $postCategory)
+    public function update(Request $request, PostCategory $category)
     {
-        $postCategory->update($request->all());
+        $category->update($request->all());
+
+        return redirect()->route('post.category.list')->with('success','category update successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PostCategory $postCategory)
+    public function destroy(PostCategory $category)
     {
-        $postCategory->delete();
+        $category->delete();
     }
 }

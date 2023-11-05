@@ -100,9 +100,14 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Service $service)
+    public function show_user(Service $service)
     {
         return json_encode($service);
+    }
+
+    public function show(Service $service)
+    {
+        return view('admin.layouts.services.details',compact('service'));
     }
 
     /**
@@ -135,13 +140,25 @@ class ServiceController extends Controller
             $imageName = $service->service_logo;
         }
 
+        $status=0;
+        if($request->status)
+        {
+            $status=1;
+        }
+
 
         $service->update([
+            'service_name'=>$request->service_name,
+            'service_slug'=>Str::slug($request->service_name),
             'service_logo'=>$imageName,
             'service_desc'=>$request->service_desc,
             'service_process'=>$request->service_process,
             'service_benefits'=>$request->service_benefits,
             'service_duration'=>$request->service_duration,
+            'meta_title'=>$request->meta_title,
+            'meta_tag'=>$request->meta_tag,
+            'meta_desc'=>$request->meta_desc,
+            'status'=>$status
         ]);
 
         if ($request->has('technologies')) {

@@ -4,7 +4,6 @@
 @section('meta_description', 'DesignWavers')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('richtexteditor/rte_theme_default.css') }}" />
 @endsection
 
 @section('content')
@@ -140,8 +139,7 @@
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- rich text editor -->
 
-<script type="text/javascript" src="{{ asset("richtexteditor/rte.js") }}"></script>
-<script type="text/javascript" src="{{ asset('richtexteditor/plugins/all_plugins.js') }}"></script>
+
 
 
 

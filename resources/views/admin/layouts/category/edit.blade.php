@@ -33,7 +33,7 @@
 
                             <div class="card">
                                 <div class="card-header d-flex">
-                                    <h3 class="box-title col-md-6">Create Service Category</h3>
+                                    <h3 class="box-title col-md-6">Edit Category</h3>
                                     <div class="col-md-3"></div>
 
                                 </div>
@@ -54,7 +54,7 @@
                                                         </div>
                                                     @endif
                                                     <form role="form" method="POST"
-                                                        action="{{ route('post.category.store') }}"
+                                                        action="{{ route('post.category.update',$category->id) }}"
                                                         enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="box-body">
@@ -62,24 +62,24 @@
                                                                 <div class="form-group">
                                                                     <label for="feature_title">Category Name</label>
                                                                     <input type="text" id="feature_title"
-                                                                        name="category_name" class="form-control">
+                                                                        name="category_name" value="{{ $category->category_name }}" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="feature_title">Meta Title</label>
                                                                     <input type="text" id="feature_title"
-                                                                        name="category_meta_title" class="form-control">
+                                                                        name="category_meta_title" value="{{ $category->category_meta_title }}" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="feature_title">Meta Tag</label>
                                                                     <input type="text" id="feature_title"
-                                                                        name="category_meta_tag" class="form-control">
+                                                                        name="category_meta_tag" value="{{ $category->category_meta_tag }}" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="feature_title">Meta Description</label>
                                                                     <input type="text" id="feature_title"
-                                                                        name="category_meta_desc" class="form-control">
+                                                                        name="category_meta_desc" value="{{ $category->category_meta_desc }}" class="form-control">
                                                                 </div>
-                                                                
+
                                                                 <button type="submit"
                                                                     class="btn btn-primary">Submit</button>
 

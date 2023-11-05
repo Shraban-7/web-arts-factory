@@ -126,7 +126,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('post.category.create') }}" class="nav-link">
+                            <a href="{{ route('post.category.list') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Post Categories</p>
                             </a>

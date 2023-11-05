@@ -37,7 +37,7 @@
 
                             <div class="card">
                                 <div class="card-header d-flex">
-                                    <h3 class="box-title col-md-6">Create Service Feature</h3>
+                                    <h3 class="box-title col-md-6">Create Service</h3>
                                     <div class="col-md-3"></div>
 
                                 </div>
@@ -68,30 +68,8 @@
                                                                     <input type="text" id="service_name"
                                                                         name="service_name" class="form-control">
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label for="exampleFormControlTextarea1">Service
-                                                                        Description</label>
-                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="service_desc" rows="3"></textarea>
-                                                                </div>
                                                                 <!-- Add other fields in the left column -->
                                                             </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="exampleFormControlTextarea2">Service
-                                                                        Process</label>
-                                                                    <textarea class="form-control" id="exampleFormControlTextarea2" name="service_process" rows="3"></textarea>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="exampleFormControlTextarea3">Service
-                                                                        Benefits</label>
-                                                                    <textarea class="form-control" id="exampleFormControlTextarea3" name="service_benefits" rows="3"></textarea>
-                                                                </div>
-                                                                <!-- Add other fields in the right column -->
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="imageUpload">Choose an image</label>
@@ -101,24 +79,39 @@
                                                                     <img id="display_image" class="mt-3" width="auto"
                                                                         height="250px" src="" alt="">
                                                                 </div>
-                                                                <!-- Add other fields in the left column of the second row -->
                                                             </div>
-
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label for="service_name">Meta Title</label>
-                                                                    <input type="text" id="service_name"
-                                                                        name="meta_title" class="form-control">
+                                                                    <label for="exampleFormControlTextarea1">Service
+                                                                        Description</label>
+                                                                    <textarea class="form-control" id="description" name="service_desc" rows="3"></textarea>
                                                                 </div>
+                                                            </div>
+                                                            <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label for="service_name">Meta Tag</label>
-                                                                    <input type="text" id="service_name" name="meta_tag"
-                                                                        class="form-control">
+                                                                    <label for="exampleFormControlTextarea2">Service
+                                                                        Process</label>
+                                                                    <textarea class="form-control" id="process" name="service_process" rows="3"></textarea>
                                                                 </div>
-                                                                <!-- Add other fields in the right column of the second row -->
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="exampleFormControlTextarea3">Service
+                                                                        Benefits</label>
+                                                                    <textarea class="form-control" id="benefits" name="service_benefits" rows="3"></textarea>
+                                                                </div>
+                                                                <!-- Add other fields in the right column -->
                                                             </div>
                                                         </div>
-
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="service_name">Service Duration</label>
+                                                                    <input type="text" id="service_duration"
+                                                                        name="service_duration" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <label>Choose Technologies</label>
@@ -132,6 +125,39 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="service_name">Meta Title</label>
+                                                                    <input type="text" id="service_name"
+                                                                        name="meta_title" class="form-control">
+                                                                </div>
+                                                                <!-- Add other fields in the left column of the second row -->
+                                                            </div>
+
+                                                            <div class="col-md-6">
+
+                                                                <div class="form-group">
+                                                                    <label for="service_name">Meta Tag</label>
+                                                                    <input type="text" id="service_name" name="meta_tag"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <!-- Add other fields in the right column of the second row -->
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="exampleFormControlTextarea3">Meta
+                                                                        Description</label>
+                                                                    <textarea class="form-control" id="meta_desc" name="meta_desc" rows="3"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
 
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -148,12 +174,8 @@
                                                         </div>
 
                                                         <div class="row">
-                                                            <div class="col-md-6">
-                                                                <button type="button"
-                                                                    class="bootbox-close-button btn btn-danger me-3 px-3 btn-block">Cancel</button>
 
-                                                            </div>
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-12">
                                                                 <button type="submit"
                                                                     class="btn btn-success me-3 px-3 btn-block">Save</button>
                                                             </div>
@@ -202,6 +224,11 @@
             $('.select2bs4').select2({
                 theme: 'bootstrap4'
             });
+
+            var editor1 = new RichTextEditor("#process");
+            var editor1 = new RichTextEditor("#description");
+            var editor1 = new RichTextEditor("#benefits");
+            var editor1 = new RichTextEditor("#meta_desc");
 
             //image preview
 

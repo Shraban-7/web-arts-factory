@@ -45,6 +45,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 
+<link rel="stylesheet" href="{{ asset('richtexteditor/rte_theme_default.css') }}" />
+
+
   @yield('styles')
 
 </head>
@@ -114,6 +117,9 @@
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset("dist/js/pages/dashboard.js") }}"></script>
+
+<script type="text/javascript" src="{{ asset("richtexteditor/rte.js") }}"></script>
+<script type="text/javascript" src="{{ asset('richtexteditor/plugins/all_plugins.js') }}"></script>
 
 
 

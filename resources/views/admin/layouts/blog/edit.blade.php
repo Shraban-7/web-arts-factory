@@ -72,7 +72,7 @@
                                                                 <div class="form-group">
                                                                     <label for="exampleFormControlTextarea1">Post
                                                                         Description</label>
-                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="post_desc" rows="3">{{ $blogPost->post_desc }}</textarea>
+                                                                    <textarea class="form-control" id="inp_editor1" name="post_desc" rows="3">{{ $blogPost->post_desc }}</textarea>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Categories</label>
@@ -98,8 +98,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="feature_title">Meta Description</label>
-                                                                    <input type="text" id="feature_title"
-                                                                        name="meta_desc" class="form-control">
+                                                                    <textarea class="form-control"  id="inp_editor2" name="meta_desc" rows="3"></textarea>
                                                                 </div>
 
                                                                 <button type="submit"
@@ -153,7 +152,8 @@
     $(function() {
 
 
-
+        var editor1 = new RichTextEditor("#inp_editor1");
+        var editor1 = new RichTextEditor("#inp_editor2");
 
 
 

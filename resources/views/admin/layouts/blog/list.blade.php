@@ -16,7 +16,7 @@
                 <div class="row mb-2">
                     <!-- /.col -->
                     <div class="col-md-4">
-                        
+
                     </div>
                     <div class="col-md-4">
 
@@ -80,7 +80,7 @@
                                                 </td>
                                                 <td>
 
-                                                    <a class="btn btn-warning" href="#"><i
+                                                    <a class="btn btn-warning" href="{{ route('blog.show',$post->id) }}"><i
                                                             class="fa-solid fa-eye"></i></a>
                                                     <a class="btn btn-primary" href="{{ route('blog.edit', $post->id) }}"><i
                                                             class="fa-solid fa-pen-to-square"></i></a>

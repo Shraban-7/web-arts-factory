@@ -23,6 +23,7 @@ Route::get('/dashboard', function () {
 Route::get('/services', [ServiceController::class, 'index'])->name('services');
 Route::get('/service/create',[ServiceController::class,'create'])->name('service.create');
 Route::post('service/store',[ServiceController::class, 'store'])->name('service.store');
+Route::get('service/edit/{service}',[ServiceController::class, 'show'])->name('service.show');
 Route::get('service/edit/{service}',[ServiceController::class, 'edit'])->name('service.edit');
 Route::post('service/update/{service}',[ServiceController::class, 'update'])->name('service.update');
 Route::get('service/delete/{service}',[ServiceController::class, 'destroy'])->name('service.delete');
@@ -48,9 +49,12 @@ Route::get('/service/project/delete/{project}',[ProjectController::class,'destro
 
 
 // category
-
+Route::get('/blog/post/category/list',[PostCategoryController::class,'index'])->name('post.category.list');
 Route::get('/blog/post/category/create',[PostCategoryController::class,'create'])->name('post.category.create');
 Route::post('/blog/post/category/store',[PostCategoryController::class,'store'])->name('post.category.store');
+Route::get('/blog/post/category/edit/{category}',[PostCategoryController::class,'edit'])->name('post.category.edit');
+Route::post('/blog/post/category/update/{category}',[PostCategoryController::class,'update'])->name('post.category.update');
+Route::get('/blog/post/category/delete/{category}',[PostCategoryController::class,'destroy'])->name('post.category.delete');
 
 
 // blog
@@ -58,9 +62,14 @@ Route::post('/blog/post/category/store',[PostCategoryController::class,'store'])
 Route::get('/blog/list',[BlogPostController::class,'index'])->name('blog.list');
 Route::get('/blog/post/create',[BlogPostController::class,'create'])->name('blog.post.create');
 Route::post('/blog/post/store',[BlogPostController::class,'store'])->name('blog.post.store');
+Route::get('blog/edit/{blogPost}',[BlogPostController::class, 'show'])->name('blog.show');
 Route::get('blog/edit/{blogPost}',[BlogPostController::class, 'edit'])->name('blog.edit');
 Route::post('blog/update/{blogPost}',[BlogPostController::class, 'update'])->name('blog.update');
 Route::get('blog/delete/{blogPost}',[BlogPostController::class, 'destroy'])->name('blog.delete');
+
+
+
+
 
 // brand partner
 
